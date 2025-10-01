@@ -10,8 +10,6 @@ Inside, you'll find: ZKP Core Concepts, Helper Libraries, Developer Tools, Testi
 
 This GitBook serves as the single entry point for developers to explore, integrate, and extend the ZKWasm Playground.
 
-______________________________________________________________________
-
 ## Contents
 
 1. [ZKWasm Playground Guide](./guides/zkwasm-playground/README.md)
@@ -21,8 +19,6 @@ ______________________________________________________________________
 1. [ZKWasm Docker Prover Node](./guides/prover-node-docker/README.md)
 1. [Other Tools](./guides/other-tools/README.md)
 
-______________________________________________________________________
-
 ## Who This Is For
 
 This documentation is intended for:
@@ -30,8 +26,6 @@ This documentation is intended for:
 - Developers building on the ZKWasm Playground.
 - Contributors writing new helper functions, scripts, or test cases.
 - Operators running prover nodes or integrating Playground into production workflows.
-
-______________________________________________________________________
 
 ## How to Use This GitBook
 
@@ -44,8 +38,6 @@ ______________________________________________________________________
 - Each guide contains overview, setup and tips sections.
 - Index of relevant links can be found [here](./links/README.md).
 - For a guide on understanding the proving technology via this page [here](https://hackmd.io/@qozymandias/rkENXr3na).
-
-______________________________________________________________________
 
 ## How to Improve This GitBook
 
