@@ -63,7 +63,7 @@ Example `tests/config.json`:
 ```json
 {
     "details": {
-        "server_url": "http://138.217.142.94:8108",
+        "server_url": "http://100.100.100.10:8108",
         "private_key": "0x...",
         "chain_ids": "97"
     },

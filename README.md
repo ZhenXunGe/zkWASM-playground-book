@@ -1,12 +1,16 @@
 # ZKWasm Developers Guide
 
-Welcome to the ZKWasm Developer Documentation Hub
+Welcome to the ZKWasm Playground Developer Hub, the central guide for working with the ZKWasm Playground ecosystem.
 
-This GitBook is the central entry point for exploring and working with the ZKWasm Playground ecosystem.
+The ZKWasm Playground (ZKP) project provides a platform for verifying WebAssembly (WASM) programs with Zero-Knowledge Proofs. This
+documentation explains the architecture, tools, and workflows that make up the ecosystem, helping developers build, test, and
+debug ZKP services.
 
-The ZKWasm Playground (ZKP) project provides a platform for verifying WebAssembly (WASM) programs using Zero-Knowledge Proofs.
-Here you'll find documentation not only on ZKP concepts, but also on the supporting libraries, developer tools, and end-to-end
-tests that make the Playground practical for real-world development.
+Inside, you'll find: ZKP Core Concepts, Helper Libraries, Developer Tools, Testing and Examples, End-to-End Workflows,
+
+This GitBook serves as the single entry point for developers to explore, integrate, and extend the ZKWasm Playground.
+
+______________________________________________________________________
 
 ## Contents
 
@@ -17,6 +21,8 @@ tests that make the Playground practical for real-world development.
 1. [ZKWasm Docker Prover Node](./guides/prover-node-docker/README.md)
 1. [Other Tools](./guides/other-tools/README.md)
 
+______________________________________________________________________
+
 ## Who This Is For
 
 This documentation is intended for:
@@ -24,6 +30,8 @@ This documentation is intended for:
 - Developers building on the ZKWasm Playground.
 - Contributors writing new helper functions, scripts, or test cases.
 - Operators running prover nodes or integrating Playground into production workflows.
+
+______________________________________________________________________
 
 ## How to Use This GitBook
 
@@ -36,6 +44,8 @@ This documentation is intended for:
 - Each guide contains overview, setup and tips sections.
 - Index of relevant links can be found [here](./links/README.md).
 - For a guide on understanding the proving technology via this page [here](https://hackmd.io/@qozymandias/rkENXr3na).
+
+______________________________________________________________________
 
 ## How to Improve This GitBook
 

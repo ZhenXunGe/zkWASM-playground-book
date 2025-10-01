@@ -90,7 +90,7 @@ Example of `tests/config.json`:
 ```json
 {
   "details": {
-    "server_url": "http://138.217.142.94:8108",
+    "server_url": "http://100.100.100.10:8108",
     "private_key": "0x...",
     "chain_id": 97,
     "pedantic_checks": false
@@ -113,7 +113,7 @@ Example of `tests/config.json`:
     "task_id_in_auto_submit_batch": "689167093fef6b4931d611c8"
   },
   "archive": {
-    "server_url": "http://138.217.142.94:8108",
+    "server_url": "http://100.100.100.10:8108",
     "id": "68709dcc0a7b4ac8c109b12a",
     "archived_task_id": "68709dcc0a7b4ac8c109b12a",
     "archive_volume_name": "vol_1",
@@ -160,7 +160,7 @@ Example testing config `test.json`:
 ```json
 {
     "details": {
-        "server_url": "http://138.217.142.94:8108",
+        "server_url": "http://100.100.100.10:8108",
         "private_key": "0x...
         "chain_id": 97,
         "pedantic_checks": false
@@ -183,7 +183,7 @@ Example testing config `test.json`:
         "task_id_in_auto_submit_batch": "689167093fef6b4931d611c8"
     },
     "archive": {
-        "server_url": "http://138.217.142.94:8108",
+        "server_url": "http://100.100.100.10:8108",
         "id": "68709dcc0a7b4ac8c109b12a",
         "archived_task_id": "68709dcc0a7b4ac8c109b12a",
         "archive_volume_name": "vol_1",
