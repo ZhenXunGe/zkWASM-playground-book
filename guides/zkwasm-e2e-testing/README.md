@@ -1,4 +1,4 @@
-# ZKWASM Playground End-to-End Tests
+# ZKWASM Playground End-to-End Tests Guide
 
 [Repo](https://github.com/ZhenXunGe/playground-e2e-tests)
 
@@ -9,8 +9,8 @@ auto-submit tasks, verification, user charges, subscriptions, and failure scenar
 
 The E2E testing framework is a customizable solution for testing majority of the features of ZKWasm Playground (ZKP).
 
-This suite ensures robustness of ZKP workflows, verifying normal operation, failure handling, and edge-case behavior,
-while serving as a reference for writing new tests and scripts for custom scenarios.
+This suite ensures robustness of ZKP workflows, verifying normal operation, failure handling, and edge-case behavior, while
+serving as a reference for writing new tests and scripts for custom scenarios.
 
 For complete documentation please see repo's [README](https://github.com/ZhenXunGe/playground-e2e-tests/blob/main/README.md)
 
@@ -25,11 +25,13 @@ Key Features
   - User charge and subscription workflows
   - Failure tests for setup, reset, and proof tasks, including dry run failures
 
-- WASM Files: Multiple WASM files provided for different test cases (e.g., equality.wasm, context.wasm, merkledb.wasm, write_benchmark.wasm)
+- WASM Files: Multiple WASM files provided for different test cases (e.g., `equality.wasm`, `context.wasm`, `merkledb.wasm`,
+  `write_benchmark.wasm`)
 
 - Custom Scripts: Scripts for smoke tests, failure tests, Merkle DB verification, production regression tests, and benchmarks
 
-- Edge Case Testing: Supports testing scenarios like insufficient user balance, unprovable proofs, rejected prover results, and dry run failures
+- Edge Case Testing: Supports testing scenarios like insufficient user balance, unprovable proofs, rejected prover results, and
+  dry run failures
 
 - Docker Testing: Includes instructions for testing upgrades and behavior with dockerized prover nodes
 
@@ -39,36 +41,59 @@ Key Features
 
 ### 1. Install dependencies
 
-```
+```bash
 npm install
 ```
 
 ### 2. Update Configs
 
-`.env`
+#### Env File
 
-```
+Only the chain ids need updating in the environment file.
+
+`.env`:
+
+```bash
 CHAIN_IDS="$REPLACE_WITH_TEST_NET_CHAIN_ID_NUMBER ..."
 ```
 
-`src/config.ts`
+#### Config Source File
 
-```
-server_url: "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
-privateKey: "$REPLACE_WITH_YOUR_METAMASK_NODE_PRIVATE_KEY",
+The following are the key variables that must be updated in the config source file:
+
+- Server URL must be set to point to your Rest server.
+- Private key must be set to your own private key from MetaMask.
+- Network config must be updated with your test net details.
+
+`src/config.ts`:
+
+```typescript
+export const e2eTestConfig = {
+    server_url: "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
+    privateKey: "$REPLACE_WITH_YOUR_METAMASK_NODE_PRIVATE_KEY",
+};
+
+...
 
 export const NetworkConfigs = [
   {
-    chainId: 97,
-    name: "bsctestnet",
-    rpcUrl: "https://data-seed-prebsc-1-s3.binance.org:8545",
+    chainId: $REPLACE_WITH_TEST_NET_CHAIN_ID_NUMBER,
+    name: "$REPLACE_WITH_TEST_NET_CHAIN_NAME",
+    rpcUrl: "$REPLACE_WITH_TEST_NET_RPC_URL",
   },
 ];
 ```
 
-Example
+Example `src/config.ts`:
 
-```
+```typescript
+export const e2eTestConfig = {
+    server_url: "http://localhost:8108",
+    privateKey: "0x...",
+};
+
+...
+
 export const NetworkConfigs = [
   {
     chainId: 97,
@@ -80,7 +105,7 @@ export const NetworkConfigs = [
 
 ### 3. Run all test scripts
 
-```
+```bash
 bash scripts/all_tests.sh
 ```
 
@@ -88,10 +113,10 @@ bash scripts/all_tests.sh
 
 ### Automating Testing of Production Sample Images
 
-[`TEST-BRANCH-PRODUCTION-IMAGES](https://github.com/ZhenXunGe/playground-e2e-tests/tree/TEST-BRANCH-PRODUCTION-IMAGES) 
-branch of the E2E repo provides many previous production images that can be used to test local deployment.
+[`TEST-BRANCH-PRODUCTION-IMAGES`](https://github.com/ZhenXunGe/playground-e2e-tests/tree/TEST-BRANCH-PRODUCTION-IMAGES) branch of
+the E2E repo provides many previous production images that can be used to test local deployment.
 
-```
+```bash
 git clone git@github.com:ZhenXunGe/playground-e2e-tests.git e2e
 
 cd e2e

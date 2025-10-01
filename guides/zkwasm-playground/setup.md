@@ -1,8 +1,8 @@
 # ZKWasm Playground Developer Setup
 
 The [ZKWasm Playground (ZKP)](https://github.com/ZhenXunGe/zkWASM-playground) requires a beefy setup for complete system running.
-Only compilation, formatting, linting and unit tests can be done locally.
-For testing, using the developer server machines are required.
+Only compilation, formatting, linting and unit tests can be done locally. For testing, using the developer server machines are
+required.
 
 The following guide focuses on setting up the dev environment for testing on a developer server.
 
@@ -10,8 +10,8 @@ The following guide focuses on setting up the dev environment for testing on a d
 
 Before must create a [MetaMask](https://metamask.io/) account and install the browser extension.
 
-Once your create your MetaMask account you can create multiple wallets each with a unique address and private key.
-Make sure you note these down, the address/key must be provided
+Once your create your MetaMask account you can create multiple wallets each with a unique address and private key. Make sure you
+note these down, the address/key must be provided
 
 ## Initial Setup
 
@@ -21,7 +21,7 @@ Tmux is used for running multiple processes at once.
 
 Start a new tmux session
 
-```
+```bash
 tmux new
 ```
 
@@ -30,9 +30,9 @@ tmux new
 Create a parent folder `zkp` and clone the Repo into two directories; specific services can be grouped into a shared directory.
 
 1. `restservice` for Rest and Dry Run services
-2. `proveservice` for Prover, Setup and Auto Submit Nodes.
+1. `proveservice` for Prover, Setup and Auto Submit Nodes.
 
-```
+```bash
 mkdir zkp
 cd zkp
 git clone git@github.com:ZhenXunGe/zkWASM-playground.git restservice
@@ -41,9 +41,9 @@ git clone git@github.com:ZhenXunGe/zkWASM-playground.git proveservice
 
 ### 3. Update Rest Service Config and Scripts
 
-First change into `restservice`.
+First change directory into `restservice`.
 
-```
+```bash
 cd restservice
 ```
 
@@ -59,7 +59,7 @@ Modify the following are the important variables in `restservice` config:
 
 ##### Main Server Config Changes
 
-`server_config.json`
+`server_config.json`:
 
 ```json
 {
@@ -120,9 +120,7 @@ Modify the following are the important variables in `restservice` config:
 
 ##### Network Config Changes
 
-Example Network config:
-
-`server_config.json`
+Example Network config changes in `server_config.json`:
 
 ```json
 {
@@ -147,7 +145,13 @@ Example Network config:
 
 #### Dry Run Config
 
-`dry_run_config.json`
+The following are the key variables that must be updated in the dry run config file:
+
+- Server URL must be set to point to your Rest server.
+- Private key must be set to your own private key from MetaMask.
+- Address must be set to your MetaMask address, should match the private key and be the same as used in rest server config.
+
+`dry_run_config.json`:
 
 ```json
 {
@@ -159,11 +163,11 @@ Example Network config:
 
 #### Update Deploy Options for Manual Mode Network
 
-Adjust to the name of your network.
+Adjust to the name of your network in the deploy options.
 
-`server_storage/deploy/deploy_options.json`
+`server_storage/deploy/deploy_options.json`:
 
-```
+```json
 {
   "$REPLACE_WITH_TEST_NET_CHAIN_NAME": {
     "from_circuit_size": 22,
@@ -174,11 +178,11 @@ Adjust to the name of your network.
 
 #### Update Deploy Options for Auto Submit Mode Network
 
-Adjust to the name of your network.
+Adjust to the name of your network in the auto submit deploy options.
 
-`auto_submit_workspace/deploy/auto_submit_deploy_options.json`
+`auto_submit_workspace/deploy/auto_submit_deploy_options.json`:
 
-```
+```json
 {
   "$REPLACE_WITH_TEST_NET_CHAIN_NAME": {
     "from_circuit_size": 23,
@@ -189,21 +193,21 @@ Adjust to the name of your network.
 
 #### Update Run Script
 
-Adjust to the your local port which is avaible. This is where API requests are received.
+Adjust to the your local port which is available. This is where API requests are received.
 
-`run.sh`
+`run.sh`:
 
-```
+```bash
 RUST_LOG=info cargo run --release --features profile -- --config server_config.json -w server_storage --rocksdbworkspace rocksdb --restport $REPLACE_WITH_REST_SERVER_PORT
 ```
 
-#### Update MongoDB Script
+#### Update `MongoDB` Script
 
-Adjust to the another local port which is avaible. This is where `MongoDB` will accept requests.
+Adjust to the another local port which is available. This is where `MongoDB` will accept requests.
 
-`run_mongodb_replica_set.sh`
+`run_mongodb_replica_set.sh`:
 
-```
+```bash
 mongod --port $REPLACE_WITH_MONGODB_PORT --dbpath db --replSet rs0 \
     2>&1 | rotatelogs -e -n 10 logs/db/db_$time.log 100M
 ```
@@ -212,56 +216,80 @@ mongod --port $REPLACE_WITH_MONGODB_PORT --dbpath db --replSet rs0 \
 
 Update the Port and Rest URL variables in web environment file.
 
-`web/.env`
+`web/.env`:
 
-```
+```bash
 $PORT=$REPLACE_WITH_YOUR_EXPOSED_PORT_FOR_WEB_PAGE
 $REACT_APP_REST_URL='http://localhost:$REPLACE_WITH_REST_SERVER_PORT'
 ```
 
 ### 4. Update Prover Service Configs and Scripts
 
-Change into `proveservice`.
+Change into `proveservice` directory.
 
-```
+```bash
 cd proveservice
 ```
 
 Get your addresses from MetaMask. You need a unique address for Prover Server and Setup Node.
 
-#### Prover Config
+#### Update Prover Config
 
-Update Prover config with address and private key.
+Update the following key variables in the prover config file:
 
-`prover_config.json`
+- Server URL must be set to point to your Rest server.
+- Private key must be set to one of your private keys. This must be different to the private key/address assign to the rest
+  server.
 
+`prover_config.json`:
+
+```json
+{
+  "server_url": "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
+  "priv_key": "$REPLACE_WITH_YOUR_METAMASK_NODE_PRIVATE_KEY",
+  ...
+}
 ```
-"server_url": "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
-"priv_key": "$REPLACE_WITH_YOUR_METAMASK_NODE_PRIVATE_KEY",
-```
 
-#### Prover System Config
+#### Update Prover System Config
 
-`prover_system_config.json`
+The prover system config only requires the rest server url to be updated.
 
-```
-    "server_url": "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
+`prover_system_config.json`:
+
+```json
+{
+  "server_url": "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
+  ...
 }
 ```
 
 #### Setup Node Config
 
-`run_setupnode.json`
+Adjust the setup node config to point to a separate config with specific setup details. Follow the same steps
+[here](#update-prover-config) but specify a different private key and address pair. Creating a new account with your MetaMask will
+generate a new address/key pair.
 
-```
-RUST_LOG=info RUST_BACKTRACE=1 cargo run --release --features profile -- --config $SETUP_NODE_PROVER_CONFIG --proversystemconfig prover_system_config.json -w workspace -s
+Additionally, you will need to create a new directory for setup node server data (e.g. `workspace_1`), it cannot share the same as
+prover.
+
+`run_setupnode.json`:
+
+```bash
+RUST_LOG=info RUST_BACKTRACE=1 cargo run --release --features profile -- --config $SETUP_NODE_PROVER_CONFIG --proversystemconfig prover_system_config.json -w $SETUP_NODE_WORKSPACE -s
 ```
 
 #### Auto Submit Config
 
-`auto_submit_config.json`
+Update the key variables in the auto submit config.
 
-```
+- Server URL must be set to point to your Rest server.
+- Private key must be set to specific key for auto submit service (generated from MetaMask).
+- Network must be set to the test chain in which the generated batches will be verified on.
+
+`auto_submit_config.json`:
+
+```json
 {
     "server_url": "http://localhost:$REPLACE_WITH_REST_SERVER_PORT",
     "private_key": "$REPLACE_WITH_YOUR_AUTO_SUBMIT_NODE_PRIVATE_KEY",
@@ -276,39 +304,61 @@ RUST_LOG=info RUST_BACKTRACE=1 cargo run --release --features profile -- --confi
 
 Now, each tmux screen in the session will be dedicated to a specific service in the deployment.
 
-In your tmux screen which is dedicated to Rest Server, run the preparation script, this will take ~30 minutes to complete.
-Ensure you enter "Yes" to the prompts.
+In your tmux screen which is dedicated to Rest Server, run the preparation script, this will take ~30 minutes to complete. Ensure
+you enter "Yes" to the prompts.
 
 ```bash
 bash scripts/deployments/prepare/perform_server_setup.sh
+```
+
+Copy the K Params files into prover, and setup node server directories. Note: Auto submit will download K params and
+[dockerized prover](/guides/prover-node-docker/README.md) has them built in.
+
+```bash
+# Copy into prover node data directory
+mkdir -p ../proveservice/workspace/static && cp ./server_storage/static/K2* ../proveservice/workspace/static/
+
+# Copy into setup node data directory (here it is just called `workspace_1`)
+mkdir -p ../proveservice/workspace_1/static && cp ./server_storage/static/K2* ../proveservice/workspace_1/static/
 ```
 
 ### 6. Start Services
 
 Start the service, in each its own tmux screen.
 
-1. `MongoDB`
-   ```
+1. `MongoDB` (note: `rs.initiate()` command is required to be run if the DB is newly created)
+
+   ```bash
    bash run_mongodb_replica_set.sh
    ```
-2. Rest Server
-   ```
+
+1. Rest Server
+
+   ```bash
    bash run.sh
    ```
-3. Dry Run Server
-   ```
+
+1. Dry Run Server
+
+   ```bash
    bash run_rest_dry_run_service.sh
    ```
-4. Prover Server
-   ```
+
+1. Prover Server
+
+   ```bash
    bash runprover.sh
    ```
-5. Setup Node Server
-   ```
+
+1. Setup Node Server
+
+   ```bash
    bash run_setupnode.sh
    ```
-6. Auto Submit Server
-   ```
+
+1. Auto Submit Server
+
+   ```bash
    bash run_auto_submit.sh
    ```
 
@@ -316,13 +366,13 @@ Start the service, in each its own tmux screen.
 
 Install dependencies
 
-```
+```bash
 npm install
 ```
 
 Run
 
-```
+```bash
 npm run start
 ```
 
@@ -332,7 +382,7 @@ npm run start
 
 Most basic tests, excludes testing prove and database functionality.
 
-```
+```bash
 cargo tests
 ```
 
@@ -340,7 +390,7 @@ cargo tests
 
 This script runs tests that verifies setup and prove functionality, requires the prepare script to have been run.
 
-```
+```bash
 bash scripts/tests/test_all.sh
 ```
 
@@ -350,7 +400,7 @@ bash scripts/tests/test_all.sh
 
 #### Formatting
 
-```
+```bash
 # Rust code format
 cargo fmt
 
@@ -360,7 +410,7 @@ cd web && npm run format && cd ..
 
 #### Linting
 
-```
+```bash
 cargo lint
 cargo lint_tests
 ```
