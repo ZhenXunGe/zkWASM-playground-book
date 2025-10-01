@@ -6,7 +6,7 @@ The ZKWasm Playground (ZKP) project provides a platform for verifying WebAssembl
 documentation explains the architecture, tools, and workflows that make up the ecosystem, helping developers build, test, and
 debug ZKP services.
 
-Inside, you'll find: ZKP Core Concepts, Helper Libraries, Developer Tools, Testing and Examples, and End-to-End Workflows.
+Inside, you'll find: ZKP Core Concepts, Helper Libraries, Developer Tools, End-to-End Workflows, Testing and Examples.
 
 This GitBook serves as the single entry point for developers to explore, integrate, and extend the ZKWasm Playground.
 
