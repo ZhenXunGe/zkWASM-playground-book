@@ -2,7 +2,7 @@
 
 ## ZKWasm Playground `MongoDB` Tool Guide
 
-[repo](https://github.com/ZhenXunGe/playground-mongodb-tool)
+[Repo](https://github.com/ZhenXunGe/playground-mongodb-tool)
 
 ### Overview
 
@@ -20,7 +20,7 @@ See documentation [here](https://github.com/ZhenXunGe/playground-mongodb-tool/bl
 
 ## ZKWasm Playground `RocksDB` Tool Guide
 
-[repo](https://github.com/ZhenXunGe/playground-rocksdb-tool)
+[Repo](https://github.com/ZhenXunGe/playground-rocksdb-tool)
 
 ### Overview
 
@@ -38,7 +38,7 @@ See documentation [here](https://github.com/ZhenXunGe/playground-rocksdb-tool/bl
 
 ## ZKWasm Playground Workflow CLI Reproduce Guide
 
-[repo](https://github.com/ZhenXunGe/playground-workflow-cli-reproduce)
+[Repo](https://github.com/ZhenXunGe/playground-workflow-cli-reproduce)
 
 ### Overview
 
@@ -50,7 +50,7 @@ See documentation [here](https://github.com/ZhenXunGe/playground-workflow-cli-re
 
 ## ZKWasm Playground Backup Service Guide
 
-[repo](https://github.com/ZhenXunGe/playground-backup-service)
+[Repo](https://github.com/ZhenXunGe/playground-backup-service)
 
 ### Overview
 
