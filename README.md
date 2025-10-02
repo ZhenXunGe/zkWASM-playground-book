@@ -37,7 +37,8 @@ This documentation is intended for:
 - Use the [Docker Prover Guide](./guides/prover-node-docker/README.md) to understand how to setup a dockerized prover node.
 - Each guide contains overview, setup and tips sections.
 - Index of relevant links can be found [here](./links/README.md).
-- For a guide on understanding the proving technology via this page [here](https://hackmd.io/@qozymandias/rkENXr3na).
+- For a guide on understanding the proving technology see this page [here](https://hackmd.io/@qozymandias/rkENXr3na) and this
+  [repo](https://github.com/DelphinusLab/polyeval).
 
 ## How to Improve This GitBook
 

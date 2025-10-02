@@ -7,6 +7,7 @@
 - [ZKWasm Docker Prover Node](https://github.com/DelphinusLab/prover-node-docker)
 - [ZKWasm Rust Service Helper](https://github.com/qozymandias/zkp-service-helper)
 - [Zero-Knowledge Proof Tutorials](https://hackmd.io/@qozymandias/rkENXr3na)
+- [Polynomial Evaluation Example Repo](https://github.com/DelphinusLab/polyeval)
 - [ZKWasm](https://github.com/DelphinusLab/zkWasm)
 - [ZKWasm Rust SDK](https://github.com/DelphinusLab/zkWasm-rust)
 - [ZKWasm Halo2 GPU Specific](https://github.com/DelphinusLab/halo2-gpu-specific)

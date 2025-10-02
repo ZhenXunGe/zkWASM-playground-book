@@ -109,13 +109,15 @@ The diagram shows how the core services work together:
 Add/Reset image request:
 
 ```markdown
-Add/Reset image -> rest server -> Setup/Reset Pending -> Setup Node Server -> Submit result
+Add/Reset image -> rest server -> Setup/Reset Pending -> Setup Node Server ---
+                                                                             |
+                                                           Submit result <----
 ```
 
 Add prove task request:
 
 ```markdown
-Add prove -> rest server -> Dry Run Pending -> Dry Run Server -> Submit result ------
-                                                                                    |
-                               Submit result <- Prove Server <- Prove Pending  <-----
+Add prove -> rest server -> Dry Run Pending -> Dry Run Server -> Submit result ----
+                                                                                  |
+                               Submit result <- Prove Server <- Prove Pending <----
 ```
